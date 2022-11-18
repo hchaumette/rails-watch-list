@@ -2,6 +2,7 @@
   <div class="container text-center">
     <h1><%= @list.name %></h1>
   </div>
+ <%= link_to 'Delete', list_path(@list), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:'delete' %>
 </div>
 
 
@@ -24,10 +25,11 @@
           <div>
 
             <p><%= bookmark.movie.overview %></p>
-            <p><%= bookmark.comment %></p>
+            <p><i class="fa-solid fa-quote-left"></i> <%= bookmark.comment %> </p>
           </div>
-          <h2 class="card-trip-pricing"><%= link_to 'Delete', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:'delete' %></h2>
+
         </div>
+        <h2 class="card-trip-pricing"><%= link_to 'Delete', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class:'delete' %></h2>
       </div>
     <% end %>
   </div>

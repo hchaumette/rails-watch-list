@@ -2,9 +2,16 @@
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  position: relative;
 
   .fa-star {
     color: rgb(201, 201, 0);
+  }
+
+  .delete {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
   }
 }
 
