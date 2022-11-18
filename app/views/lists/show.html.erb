@@ -1,4 +1,4 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/34/70/95/parkway-beverley.jpg?w=1200&h=1200&s=1);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @list.photo.key  %>);">
   <div class="container text-center">
     <h1><%= @list.name %></h1>
   </div>
@@ -8,11 +8,21 @@
 
 <div class="container">
 
-  <div class="d-flex justify-content-between align-items-center">
-    <h3><%= @list.name %></h3>
-    <%= link_to 'Add a movie', new_list_bookmark_path(@list), class:'btn btn-success m-2' %>
-  </div>
+  <div data-controller="form">
+    <div class="d-none" data-form-target="form">
+      <%= simple_form_for [@list ,@bookmark] do |f| %>
+      <%= f.input :comment %>
+      <%= f.association :movie %>
+      <%= f.submit %>
+      <% end %>
+    </div>
 
+
+    <div class="d-flex justify-content-between align-items-center">
+      <h3><%= @list.name %></h3>
+      <%= link_to 'Add a movie', '', class:'btn btn-success m-2', data: {  action: 'click->form#new'} %>
+    </div>
+  </div>
   <div class="cards">
     <% @list.bookmarks.each do |bookmark| %>
       <div class="card-trip">
